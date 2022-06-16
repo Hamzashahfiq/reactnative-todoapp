@@ -1,11 +1,13 @@
-import { View, Text } from 'react-native'
 import React from 'react'
-import Task from './src/screens/Task'
+import { Store } from './src/config/Store'
+import { Provider } from 'react-redux'
+import Navigation from './src/navigation/Navigation'
 
 export default function App() {
   return (
-    <View>
-      <Text><Task /></Text>
-    </View>
+    <Provider store = {Store}>
+      <Navigation />
+    </Provider>
+
   )
 }

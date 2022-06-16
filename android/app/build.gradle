@@ -1,5 +1,6 @@
 apply plugin: "com.android.application"
 
+
 import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 
@@ -78,11 +79,19 @@ import org.apache.tools.ant.taskdefs.condition.Os
  * ]
  */
 
+
+
 project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+
+
+
+
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -261,11 +270,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-
     //noinspection GradleDynamicVersion
+  
     implementation "com.facebook.react:react-native:+"  // From node_modules
-
+    // compile project(':react-native-vector-icons')
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation "com.facebook.react:react-native:+"
+   
+   
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
@@ -287,6 +299,7 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+   
 }
 
 if (isNewArchitectureEnabled()) {
