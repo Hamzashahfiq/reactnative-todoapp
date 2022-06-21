@@ -7,6 +7,8 @@ const Styles = StyleSheet.create({
         paddingHorizontal:15,
         fontSize: 17,
         flex:14,
+        minHeight:55,
+        maxHeight:55
 
     }
 })

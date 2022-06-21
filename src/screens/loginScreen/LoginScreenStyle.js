@@ -3,16 +3,23 @@ import {StyleSheet } from "react-native"
 const Styles = StyleSheet.create({
     container:{
         flex: 1,
+       
     },
     backgroudImage: {
         flex:1,
+       
     },
 
     loginInput1:{
-        height:100,
+        height:300,
         marginHorizontal:20,
-        marginTop:250,
-        borderWidth:2
+        marginTop:100,
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    loginimage :{
+        height:100,
+        width:100
     }
   
 })
