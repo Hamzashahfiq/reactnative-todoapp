@@ -7,16 +7,10 @@ import { fatchCurrentUser } from '../../store/TodoAuthSlice'
 export default function SplashScreen({navigation}) {
     const dispatch = useDispatch()
 
-//    function afterFatchUser(){
-//     navigation.navigate('task')
-//    }
-//    function noAfterFatchUser(){
-//     navigation.navigate('login')
-//    }
 
-//     useEffect(() =>{
-//         dispatch(fatchCurrentUser(afterFatchUser,noAfterFatchUser))
-//     },[])
+    useEffect(() =>{
+        dispatch(fatchCurrentUser({navigation}))
+    },[])
   
     
     return (

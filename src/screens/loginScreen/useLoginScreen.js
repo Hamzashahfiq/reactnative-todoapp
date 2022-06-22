@@ -4,6 +4,7 @@ import { checkLogin } from '../../store/TodoAuthSlice'
 import { useDispatch } from 'react-redux'
 import {useNavigation} from '@react-navigation/native';
 
+
 const userdetail = {
     userName: "",
     password: ""
@@ -13,20 +14,13 @@ export default function useLoginScreen() {
     const dispatch = useDispatch()
     const navigation = useNavigation()
 
-    const afterLoginHander =  () => {
-        Alert.alert('Run')
-        navigation.navigate('task')
-        Alert.alert('User Login successfully.')
-       
-    }
-
-    const loginHandler = (navigation) => {
+    const loginHandler = () => {
         if (!userDtl.userName || !userDtl.password) {
             Alert.alert('Please input all data first')
             return;
         }
         
-        dispatch(checkLogin(userDtl,afterLoginHander))
+        dispatch(checkLogin({userDtl}))
 
     }
     

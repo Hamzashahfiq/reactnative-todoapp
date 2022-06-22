@@ -5,7 +5,7 @@ import InputField from '../../componets/inputfield/InputField'
 import useTask from './useTask'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DataDisplay from '../../componets/dataDispaly/DataDisplay'
-import { setLogoutHandler } from '../../store/TodoAuthSlice'
+import { checkLogout } from '../../store/TodoAuthSlice'
 import { useDispatch } from 'react-redux'
 
 
@@ -21,11 +21,11 @@ export default function Task({navigation}) {
         source={require('../../assets/eiffelbackgroundimage.jpg')} resizeMode='cover'>
         <KeyboardAvoidingView style={styles.KeyAvoidingView}>
           <View style={styles.dataDisView}>
-            {/* <Button
-              onPress={dispatch(setLogoutHandler)}
+            <Button
+              onPress={() => dispatch(checkLogout())}
               title="Logout"
               color="#841584"
-            />*/}
+            />
             <DataDisplay task={task} /> 
           </View>
           <View style={styles.mainInputView}>

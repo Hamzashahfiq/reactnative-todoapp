@@ -14,7 +14,7 @@ export default function Navigation() {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="login" screenOptions={{
+            <Stack.Navigator initialRouteName="spalsh" screenOptions={{
                 headerStyle: {
                     backgroundColor: '#344e41',
                 },
@@ -22,13 +22,8 @@ export default function Navigation() {
                     color: 'white'
                 }
             }}>
-                <Stack.Screen name="task" component={Task} options={{ title: 'Task' }} />
-                <Stack.Screen name="login" component={LoginScreen} options={{ title: 'Login' }} />
-                {/* <Stack.Screen name="spalsh" component={SplashScreen} options={{ headerShown: false }} /> */}
 
-
-
-                {/* {isLogin ? (
+                {isLogin ? (
                     // Screens for logged in users
                     <Stack.Group>
                         <Stack.Screen name="task" component={Task} options={{ title: 'Task' }} />
@@ -37,14 +32,10 @@ export default function Navigation() {
                 ) : (
                     // Auth screens
                     <Stack.Group >
-                        <Stack.Screen name="login" component={LoginScreen} options={{ title: 'Login' }} />
+                        <Stack.Screen name="login" component={LoginScreen}  options={{ title: 'Login', headerLeft: () => <></> }} />
+                        <Stack.Screen name="spalsh" component={SplashScreen} options={{ headerShown: false }} />
                     </Stack.Group>
-                )} */}
-                {/* Common modal screens */}
-                {/* <Stack.Group screenOptions={{ headerShown: false }}>
-                    <Stack.Screen name="spalsh" component={SplashScreen} options={{ headerShown: false }} />
-                </Stack.Group> */}
-
+                )}
 
             </Stack.Navigator>
         </NavigationContainer>

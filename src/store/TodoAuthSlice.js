@@ -2,26 +2,55 @@ import {createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Alert } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
+
 
 
 
 export const checkLogin = createAsyncThunk(
   'todo/checkLogin',
-  async (userDtl,afterLoginHander) => {
-    console.log(userDtl.userName)
-    console.log(userDtl.password)
-     
+  async ({userDtl},thunkAPI) => {
     try{
         let response   = await auth().signInWithEmailAndPassword(userDtl.userName,userDtl.password)
-        console.log(response)
-        dispatch(afterLoginHander())
-              }
+        }
      catch (error){
-                console.log(error.message)
+      Alert.alert(error.message)
+      }
+    
+   return true;
+  }
+)
+
+export const fatchCurrentUser = createAsyncThunk(
+  'todo/fatchCurrentUser',
+  async ({navigation},thunkAPI) => {
+    try{
+      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+      function onAuthStateChanged(user) {
+              if (!user){
+                navigation.navigate('login')
+                return;
               }
-     return null
-           
+              return;
+       }  
+       return;
+      }
+     catch (error){
+      Alert.alert(error.message)
+      }
+    return true;
+  }
+)
+
+export const checkLogout = createAsyncThunk(
+  'todo/checkLogout',
+  async () => {
+    try{
+      await auth().signOut()
+      }
+     catch (error){
+      Alert.alert(error.message)
+      }
+    return false;
   }
 )
 
@@ -40,8 +69,15 @@ export const TodoAuthSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(checkLogin.fulfilled, (state, action) => {
-      state.isLogin = true;
-  })},
+      state.isLogin = action.payload
+  })
+  .addCase(fatchCurrentUser.fulfilled, (state, action) => {
+    state.isLogin = action.payload
+})
+  .addCase(checkLogout.fulfilled, (state, action) => {
+    state.isLogin = action.payload
+})
+},
 
 })
 
