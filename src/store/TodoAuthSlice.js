@@ -1,10 +1,35 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Alert } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import {useNavigation} from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+
+
+
+export const checkLogin = createAsyncThunk(
+  'todo/checkLogin',
+  async (userDtl,afterLoginHander) => {
+    console.log(userDtl.userName)
+    console.log(userDtl.password)
+     
+    try{
+        let response   = await auth().signInWithEmailAndPassword(userDtl.userName,userDtl.password)
+        console.log(response)
+        dispatch(afterLoginHander())
+              }
+     catch (error){
+                console.log(error.message)
+              }
+     return null
+           
+  }
+)
+
+
 
 
 export const TodoAuthSlice = createSlice({
-  name: 'Todo',
+  name: 'todo',
   initialState : {
     isLogin:false
   },
@@ -13,6 +38,10 @@ export const TodoAuthSlice = createSlice({
        state.isLogin = true;
     }
   },
+  extraReducers: (builder) => {
+    builder.addCase(checkLogin.fulfilled, (state, action) => {
+      state.isLogin = true;
+  })},
 
 })
 
@@ -23,22 +52,22 @@ export default TodoAuthSlice.reducer
 
 // thunk logic
 
-export const setLoginDetail = (navigation,userDtl) => {
-    return async function setLoginThunk (dispatch, getState) {
-        try{
-         let response   = await auth().signInWithEmailAndPassword(userDtl.userName,userDtl.password)
-         console.log('response')
-         console.log(response)
-         console.log('response')
-         navigation.navigate('task')
-         dispatch(setLogin())
-         Alert.alert('User Login successfully.')
+// export const setLoginDetail = (navigation,userDtl) => {
+//     return async function setLoginThunk (dispatch, getState) {
+//         try{
+//          let response   = await auth().signInWithEmailAndPassword(userDtl.userName,userDtl.password)
+//          console.log('response')
+//          console.log(response)
+//          console.log('response')
+//          navigation.navigate('task')
+//          dispatch(setLogin())
+//          Alert.alert('User Login successfully.')
  
-        }catch (error){
-          Alert.alert(error)
-        }
-    }
- }
+//         }catch (error){
+//           Alert.alert(error)
+//         }
+//     }
+//  }
 
 //  export const fatchCurrentUser = (navigation) => {
 //   return async function currentUserThunk (dispatch, getState) {

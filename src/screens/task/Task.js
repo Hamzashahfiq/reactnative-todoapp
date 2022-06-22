@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux'
 
 
 export default function Task({navigation}) {
-  const { task, setTask, addTaskHandler } = useTask()
+   const { task, setTask, addTaskHandler } = useTask()
   const dispatch = useDispatch()
   return (
     <View style={styles.container}>
@@ -21,12 +21,12 @@ export default function Task({navigation}) {
         source={require('../../assets/eiffelbackgroundimage.jpg')} resizeMode='cover'>
         <KeyboardAvoidingView style={styles.KeyAvoidingView}>
           <View style={styles.dataDisView}>
-            <Button
+            {/* <Button
               onPress={dispatch(setLogoutHandler)}
               title="Logout"
               color="#841584"
-            />
-            <DataDisplay task={task} />
+            />*/}
+            <DataDisplay task={task} /> 
           </View>
           <View style={styles.mainInputView}>
             <InputField task={task} onPressText={(e) => setTask(e)} onKeyHandler={addTaskHandler} />
@@ -35,7 +35,8 @@ export default function Task({navigation}) {
             </View>
           </View>
         </KeyboardAvoidingView>
-      </ImageBackground>
+      </ImageBackground> 
+      
     </View>
   )
 }

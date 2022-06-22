@@ -1,8 +1,8 @@
 import { View, Text, Alert } from 'react-native'
 import React, { useState } from 'react'
-import { setLoginDetail } from '../../store/TodoAuthSlice'
+import { checkLogin } from '../../store/TodoAuthSlice'
 import { useDispatch } from 'react-redux'
-
+import {useNavigation} from '@react-navigation/native';
 
 const userdetail = {
     userName: "",
@@ -11,18 +11,23 @@ const userdetail = {
 export default function useLoginScreen() {
     const [userDtl, setUserDtl] = useState(userdetail)
     const dispatch = useDispatch()
+    const navigation = useNavigation()
 
-    // function afterLoginHander() {
-    //     navigation.navigate('task')
-    //     Alert.alert('User Login successfully.')
-    // }
+    const afterLoginHander =  () => {
+        Alert.alert('Run')
+        navigation.navigate('task')
+        Alert.alert('User Login successfully.')
+       
+    }
 
     const loginHandler = (navigation) => {
         if (!userDtl.userName || !userDtl.password) {
             Alert.alert('Please input all data first')
             return;
         }
-        dispatch(setLoginDetail(navigation,userDtl))
+        
+        dispatch(checkLogin(userDtl,afterLoginHander))
+
     }
     
     const setUserName = (e) => {
