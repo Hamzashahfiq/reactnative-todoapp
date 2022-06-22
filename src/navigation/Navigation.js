@@ -10,11 +10,11 @@ import SplashScreen from '../screens/splashScreen/SplashScreen';
 export default function Navigation() {
     const Stack = createNativeStackNavigator();
     const isLogin = useSelector((store) => store.TodoAuthSlice.isLogin)
-
+     console.log(isLogin)
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="spalsh" screenOptions={{
+            <Stack.Navigator initialRouteName="login" screenOptions={{
                 headerStyle: {
                     backgroundColor: '#344e41',
                 },
@@ -22,6 +22,11 @@ export default function Navigation() {
                     color: 'white'
                 }
             }}>
+                 {/* <Stack.Screen name="task" component={Task} options={{ title: 'Task' }} />
+                 <Stack.Screen name="login" component={LoginScreen} options={{ title: 'Login' }} />
+                 <Stack.Screen name="spalsh" component={SplashScreen} options={{ headerShown: false }} /> */}
+
+
 
                 {isLogin ? (
                     // Screens for logged in users
@@ -36,9 +41,9 @@ export default function Navigation() {
                     </Stack.Group>
                 )}
                 {/* Common modal screens */}
-                <Stack.Group screenOptions={{ headerShown: false }}>
+                {/* <Stack.Group screenOptions={{ headerShown: false }}>
                     <Stack.Screen name="spalsh" component={SplashScreen} options={{ headerShown: false }} />
-                </Stack.Group>
+                </Stack.Group> */}
 
 
             </Stack.Navigator>
