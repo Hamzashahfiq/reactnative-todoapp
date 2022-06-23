@@ -22,6 +22,10 @@ const Styles = StyleSheet.create({
     delBtn: {
         flex: 1
     },
+    delBtn2: {
+        flex: 1,
+        marginHorizontal:20
+    },
     dataCheck: {
         flex: 1
     },
