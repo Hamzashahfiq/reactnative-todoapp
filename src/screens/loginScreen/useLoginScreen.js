@@ -11,6 +11,7 @@ const userdetail = {
 }
 export default function useLoginScreen() {
     const [userDtl, setUserDtl] = useState(userdetail)
+    const [logBtnLoading, setLogBtnLoading] = useState(false)
     const dispatch = useDispatch()
     const navigation = useNavigation()
 
@@ -20,7 +21,7 @@ export default function useLoginScreen() {
             return;
         }
         
-        dispatch(checkLogin({userDtl}))
+        dispatch(checkLogin({userDtl,setLogBtnLoading}))
 
     }
     
@@ -37,7 +38,8 @@ export default function useLoginScreen() {
         loginHandler,
         userDtl,
         setUserName,
-        setPassword
+        setPassword,
+        logBtnLoading
 
     })
 }

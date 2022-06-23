@@ -14,7 +14,7 @@ export default function Navigation() {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="spalsh" screenOptions={{
+            <Stack.Navigator initialRouteName="login" screenOptions={{
                 headerStyle: {
                     backgroundColor: '#344e41',
                 },
@@ -32,8 +32,7 @@ export default function Navigation() {
                 ) : (
                     // Auth screens
                     <Stack.Group >
-                        <Stack.Screen name="login" component={LoginScreen}  options={{ title: 'Login', headerLeft: () => <></> }} />
-                        <Stack.Screen name="spalsh" component={SplashScreen} options={{ headerShown: false }} />
+                        <Stack.Screen name="login" component={Task}  options={{ title: 'Login', headerLeft: () => <></> }} />
                     </Stack.Group>
                 )}
 
@@ -41,3 +40,6 @@ export default function Navigation() {
         </NavigationContainer>
     );
 }
+
+
+// component={LoginScreen} 

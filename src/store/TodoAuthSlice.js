@@ -1,19 +1,23 @@
 import {createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Alert } from 'react-native';
 import auth from '@react-native-firebase/auth';
-import {useNavigation} from '@react-navigation/native';
+
 
 
 
 
 export const checkLogin = createAsyncThunk(
   'todo/checkLogin',
-  async ({userDtl},thunkAPI) => {
+  async ({userDtl,setLogBtnLoading},thunkAPI) => {
     try{
+        setLogBtnLoading(true)
         let response   = await auth().signInWithEmailAndPassword(userDtl.userName,userDtl.password)
         }
      catch (error){
       Alert.alert(error.message)
+      }
+      finally{
+        setLogBtnLoading(false)
       }
     
    return true;
@@ -24,20 +28,20 @@ export const fatchCurrentUser = createAsyncThunk(
   'todo/fatchCurrentUser',
   async ({navigation},thunkAPI) => {
     try{
+      let isCurrentUser;
       const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
       function onAuthStateChanged(user) {
               if (!user){
-                navigation.navigate('login')
-                return;
+                   isCurrentUser = false
+              }else{
+                isCurrentUser = true
               }
-              return;
        }  
-       return;
       }
      catch (error){
       Alert.alert(error.message)
       }
-    return true;
+    return isCurrentUser;
   }
 )
 
@@ -73,6 +77,8 @@ export const TodoAuthSlice = createSlice({
   })
   .addCase(fatchCurrentUser.fulfilled, (state, action) => {
     state.isLogin = action.payload
+
+        
 })
   .addCase(checkLogout.fulfilled, (state, action) => {
     state.isLogin = action.payload

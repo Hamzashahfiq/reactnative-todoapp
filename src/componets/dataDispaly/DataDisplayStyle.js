@@ -24,6 +24,17 @@ const Styles = StyleSheet.create({
     },
     dataCheck: {
         flex: 1
+    },
+
+    compText:{
+        color: 'white',
+        fontSize:15,
+        backgroundColor:'black',
+        padding:5,
+        borderRadius:5,
+        width:120,
+        marginHorizontal:5,
+        marginVertical:5
     }
 
 })

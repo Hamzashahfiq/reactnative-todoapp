@@ -9,10 +9,14 @@ const Styles = StyleSheet.create({
         paddingHorizontal:20,
         paddingVertical:10,
         borderRadius:10,
+        minHeight:30,
+        minWidth:80,
+        textAlign:'center'
     },
     buttonText:{
        color :'white',
        fontWeight: 'bold',
+       textAlign:'center'
     }
 })
 export default Styles;
