@@ -10,11 +10,11 @@ import SplashScreen from '../screens/splashScreen/SplashScreen';
 export default function Navigation() {
     const Stack = createNativeStackNavigator();
     const isLogin = useSelector((store) => store.TodoAuthSlice.isLogin)
-    console.log(isLogin)
+
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="login" screenOptions={{
+            <Stack.Navigator initialRouteName="task" screenOptions={{
                 headerStyle: {
                     backgroundColor: '#344e41',
                 },
@@ -22,19 +22,19 @@ export default function Navigation() {
                     color: 'white'
                 }
             }}>
-
-                {isLogin ? (
+                <Stack.Screen name="task" component={Task} options={{ title: 'Task' }} />
+                {/* {isLogin ? (
                     // Screens for logged in users
                     <Stack.Group>
-                        <Stack.Screen name="task" component={Task} options={{ title: 'Task' }} />
+
 
                     </Stack.Group>
                 ) : (
                     // Auth screens
                     <Stack.Group >
-                        <Stack.Screen name="login" component={Task}  options={{ title: 'Login', headerLeft: () => <></> }} />
+                        <Stack.Screen name="login" component={Task} options={{ title: 'Login', headerLeft: () => <></> }} />
                     </Stack.Group>
-                )}
+                )} */}
 
             </Stack.Navigator>
         </NavigationContainer>

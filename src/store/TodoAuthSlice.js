@@ -24,26 +24,26 @@ export const checkLogin = createAsyncThunk(
   }
 )
 
-export const fatchCurrentUser = createAsyncThunk(
-  'todo/fatchCurrentUser',
-  async ({navigation},thunkAPI) => {
-    try{
-      let isCurrentUser;
-      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-      function onAuthStateChanged(user) {
-              if (!user){
-                   isCurrentUser = false
-              }else{
-                isCurrentUser = true
-              }
-       }  
-      }
-     catch (error){
-      Alert.alert(error.message)
-      }
-    return isCurrentUser;
-  }
-)
+// export const fatchCurrentUser = createAsyncThunk(
+//   'todo/fatchCurrentUser',
+//   async ({navigation},thunkAPI) => {
+//     try{
+//       let isCurrentUser;
+//       const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+//       function onAuthStateChanged(user) {
+//               if (!user){
+//                    isCurrentUser = false
+//               }else{
+//                 isCurrentUser = true
+//               }
+//        }  
+//       }
+//      catch (error){
+//       Alert.alert(error.message)
+//       }
+//     return isCurrentUser;
+//   }
+// )
 
 export const checkLogout = createAsyncThunk(
   'todo/checkLogout',
@@ -75,11 +75,9 @@ export const TodoAuthSlice = createSlice({
     builder.addCase(checkLogin.fulfilled, (state, action) => {
       state.isLogin = action.payload
   })
-  .addCase(fatchCurrentUser.fulfilled, (state, action) => {
-    state.isLogin = action.payload
-
-        
-})
+//   .addCase(fatchCurrentUser.fulfilled, (state, action) => {
+//     state.isLogin = action.payload       
+// })
   .addCase(checkLogout.fulfilled, (state, action) => {
     state.isLogin = action.payload
 })
