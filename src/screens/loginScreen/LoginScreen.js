@@ -7,7 +7,7 @@ import useLoginScreen from './useLoginScreen'
 import ActivityLoader from '../../componets/activityLoader/ActivityLoader'
 
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
     const { loginHandler, userDtl, setUserName, setPassword, logBtnLoading} = useLoginScreen();
     return (
         <View style={Styles.container}>
@@ -21,7 +21,7 @@ export default function LoginScreen({ navigation }) {
                             <InputField placeHolder={'User Name'} onPressText={setUserName} task={userDtl.userName} customStyle={{ marginBottom: 30, maxHeight: 55, maxWidth: 320, minWidth: 320, backgroundColor: '#f8edeb', borderWidth: 1 }} />
                             <InputField inputType={true} onPressText={setPassword} placeHolder={'Password'} task={userDtl.password} customStyle={{ maxHeight: 55, maxWidth: 320, minWidth: 320, backgroundColor: '#f8edeb', borderWidth: 1 }} />
                             {logBtnLoading ? <TouchButton btnName={<ActivityLoader />}  />:
-                            <TouchButton btnName={'Login'} pressButton={() => loginHandler(navigation)} />}
+                            <TouchButton btnName={'Login'} pressButton={() => loginHandler()} />}
                         </View>
                     </KeyboardAvoidingView>
                 </ScrollView>

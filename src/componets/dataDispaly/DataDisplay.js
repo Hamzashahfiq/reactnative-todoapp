@@ -7,12 +7,12 @@ import { useSelector } from 'react-redux';
 import useDataDisplay from './useDataDispaly';
 import ActivityLoader from '../activityLoader/ActivityLoader';
 
-export default function DataDisplay({ task , taskUpdatedHandler}) {
+export default function DataDisplay({ task, compData, taskUpdatedHandler }) {
     const { deleteHandler, compHandler, deleteDataLoading,
         deleteUID, updateDataLoading, updatedUID, } = useDataDisplay();
     const taskData = useSelector((store) => store.TodoSlice.task)
     const [compDataLenght, setCompDataLength] = useState(0)
-   
+
 
     useEffect(() => {
         let compData = taskData.filter((item) => {
@@ -68,6 +68,7 @@ export default function DataDisplay({ task , taskUpdatedHandler}) {
             />
 
             {compDataLenght ? <Text style={Styles.compText}>Completed Task</Text> : null}
+
             <FlatList
                 data={taskData}
                 renderItem={({ item }) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Store } from './src/config/Store'
 import { Provider } from 'react-redux'
-import Navigation from './src/navigation/Navigation'
+import Navigation from './src/navigation/Navigation';
 import auth from '@react-native-firebase/auth';
 import LoginScreen from './src/screens/loginScreen/LoginScreen';
 import SplashScreen from './src/screens/splashScreen/SplashScreen';

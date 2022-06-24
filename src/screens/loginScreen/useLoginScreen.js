@@ -2,7 +2,6 @@ import { View, Text, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { checkLogin } from '../../store/TodoAuthSlice'
 import { useDispatch } from 'react-redux'
-import {useNavigation} from '@react-navigation/native';
 
 
 const userdetail = {
@@ -13,7 +12,6 @@ export default function useLoginScreen() {
     const [userDtl, setUserDtl] = useState(userdetail)
     const [logBtnLoading, setLogBtnLoading] = useState(false)
     const dispatch = useDispatch()
-    const navigation = useNavigation()
 
     const loginHandler = () => {
         if (!userDtl.userName || !userDtl.password) {

@@ -47,12 +47,16 @@ export const checkLogin = createAsyncThunk(
 
 export const checkLogout = createAsyncThunk(
   'todo/checkLogout',
-  async () => {
+  async ({setLogoutLoading}) => {
     try{
+      setLogoutLoading(true)
       await auth().signOut()
       }
      catch (error){
       Alert.alert(error.message)
+      }
+      finally {
+        setLogoutLoading(false)
       }
     return false;
   }
