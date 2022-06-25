@@ -9,17 +9,23 @@ import auth from '@react-native-firebase/auth';
 export const checkLogin = createAsyncThunk(
   'todo/checkLogin',
   async ({userDtl,setLogBtnLoading},thunkAPI) => {
+    let checklogin
     try{
         setLogBtnLoading(true)
         let response   = await auth().signInWithEmailAndPassword(userDtl.userName,userDtl.password)
-        }
+        checklogin = true 
+      }
      catch (error){
       Alert.alert(error.message)
+      checklogin = false
       }
       finally{
-        setLogBtnLoading(false)
+      if (!checklogin) {
+          setLogBtnLoading(false)
+        }
+      
       }
-    
+     
   }
 )
 
@@ -48,15 +54,42 @@ export const checkLogout = createAsyncThunk(
   'todo/checkLogout',
   async ({setLogoutLoading}) => {
     try{
+      let checkLogoutComp
       setLogoutLoading(true)
       await auth().signOut()
+      checkLogoutComp = true
       }
      catch (error){
       Alert.alert(error.message)
+      checkLogoutComp = false
       }
-      // finally {
-      //   setLogoutLoading(false)
-      // }
+      finally {
+         if (!checkLogoutComp){
+          setLogoutLoading(false)
+         }
+       
+      }
+  }
+)
+export const signupHandler = createAsyncThunk(
+  'todo/checkLogout',
+  async ({userDtl,setSignUpLoading}) => {
+    let checkSignUp
+    try{
+      setSignUpLoading(true)
+      let response   = await auth().createUserWithEmailAndPassword (userDtl.userName,userDtl.password)
+      checkSignUp = true
+    }
+     catch (error){
+      Alert.alert(error.message)
+      checkSignUp = false
+      }
+      finally {
+        if (!checkSignUp) {
+          setSignUpLoading(false)
+        }
+       
+      }
   }
 )
 

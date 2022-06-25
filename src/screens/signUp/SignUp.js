@@ -9,7 +9,7 @@ import { useDispatch,useSelector } from 'react-redux'
 
 
 export default function SignUp() {
-    const { loginHandler, userDtl, setUserName, setPassword, logBtnLoading,setScreenSignUp } = useSignUp();
+    const { signHandler, userDtl, setUserName, setPassword, signUpLoading,setScreenSignUp } = useSignUp();
     const dispatch = useDispatch()
     return (
         <View style={Styles.container}>
@@ -19,11 +19,12 @@ export default function SignUp() {
                         <View style={Styles.loginInput1}>
                          
                             <Image
-                                source={require('../../assets/loginImage.png')} />
+                               style = {Styles.signupImage}
+                                source={require('../../assets/signup.png')} />
                             <InputField placeHolder={'User Name'} onPressText={setUserName} task={userDtl.userName} customStyle={{ marginBottom: 30, maxHeight: 55, maxWidth: 320, minWidth: 320, backgroundColor: '#f8edeb', borderWidth: 1 }} />
                             <InputField inputType={true} onPressText={setPassword} placeHolder={'Password'} task={userDtl.password} customStyle={{ maxHeight: 55, maxWidth: 320, minWidth: 320, backgroundColor: '#f8edeb', borderWidth: 1 }} />
-                            {logBtnLoading ? <TouchButton btnName={<ActivityLoader />} /> :
-                                <TouchButton btnName={'Login'} pressButton={() => loginHandler()} />}
+                            {signUpLoading ? <TouchButton btnName={<ActivityLoader />} /> :
+                                <TouchButton btnName={'Sign Up'} pressButton={() => signHandler()} />}
 
                         </View>
                         <View style={Styles.register}>

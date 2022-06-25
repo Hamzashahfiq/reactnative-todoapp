@@ -2,6 +2,7 @@ import { View, Text, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { setScreenSignUp } from '../../store/TodoAuthSlice'
 import { useDispatch } from 'react-redux'
+import { signupHandler } from '../../store/TodoAuthSlice'
 
 
 const userdetail = {
@@ -10,16 +11,16 @@ const userdetail = {
 }
 export default function useSignUp() {
     const [userDtl, setUserDtl] = useState(userdetail)
-    const [logBtnLoading, setLogBtnLoading] = useState(false)
+    const [signUpLoading, setSignUpLoading] = useState(false)
     const dispatch = useDispatch()
 
-    const loginHandler = () => {
+    const signHandler = () => {
         if (!userDtl.userName || !userDtl.password) {
             Alert.alert('Please input all data first')
             return;
         }
         
-        // dispatch(checkLogin({userDtl,setLogBtnLoading}))
+        dispatch(signupHandler({userDtl,setSignUpLoading}))
 
     }
     
@@ -33,11 +34,11 @@ export default function useSignUp() {
     }
 
     return ({
-        loginHandler,
+        signHandler,
         userDtl,
         setUserName,
         setPassword,
-        logBtnLoading,
+        signUpLoading,
         setScreenSignUp
 
     })

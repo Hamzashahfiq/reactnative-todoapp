@@ -31,8 +31,12 @@ const Styles = StyleSheet.create({
         color:'white'
     },
     registerBtn: {
-        color:'blue',
+        color:'#90e0ef',
         marginHorizontal:5
+    },
+    signupImage:{
+       marginBottom:10,
+       borderRadius:40
     }
   
 })
