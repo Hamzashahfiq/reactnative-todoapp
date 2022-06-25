@@ -28,7 +28,7 @@ const Styles = StyleSheet.create({
         
     },
     registerText: {
-        color:'#370617'
+        color:'white'
     },
     registerBtn: {
         color:'blue',

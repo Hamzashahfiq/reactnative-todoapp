@@ -2,26 +2,30 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Task from '../screens/task/Task';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CompletedTask from '../screens/completedTask/CompletedTask';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useSelector, useDispatch } from 'react-redux';
 import { checkLogout } from '../store/TodoAuthSlice';
 import ActivityLoader from '../componets/activityLoader/ActivityLoader';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SignUp from '../screens/signUp/SignUp';
 
+
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 
 
 
 export default function Navigation() {
+   
     const [taskLength, setTaskLength] = useState('')
     const [compTaskLength, setCompTaskLength] = useState('')
-    const Stack = createNativeStackNavigator();
-    const Tab = createBottomTabNavigator();
     const task = useSelector((store) => store.TodoSlice.task)
     const dispatch = useDispatch()
     const [logoutLoading, setLogoutLoading] = useState(false)
+
 
 
     useEffect(() => {
@@ -56,20 +60,20 @@ export default function Navigation() {
 
                     },
                     headerRight: () => (
-                        logoutLoading ? <ActivityLoader color = 'white'/> :
-                        < TouchableOpacity
-                            style={{ marginRight: 20 }}
-                            onPress={() => dispatch(checkLogout({setLogoutLoading}))}
-                        >
-                            <Icon name="sign-out"  color='white' size={25} />
-                        </TouchableOpacity>
-                        )
+                        logoutLoading ? <ActivityLoader style={{ marginRight: 20 }} color='white' /> :
+                            < TouchableOpacity
+                                style={{ marginRight: 20 }}
+                                onPress={() => dispatch(checkLogout({ setLogoutLoading }))}
+                            >
+                                <Icon name="sign-out" color='white' size={25} />
+                            </TouchableOpacity>
+                    )
 
                 })}>
                 <Tab.Screen name="task" component={Task} options={{ title: 'Task', tabBarBadge: `${taskLength}` }} />
                 <Tab.Screen name="completed" component={CompletedTask} options={{ title: 'Completed', tabBarBadge: `${compTaskLength}` }} />
             </Tab.Navigator>
-        </NavigationContainer>
+            </NavigationContainer>
     )
 }
 
@@ -84,7 +88,7 @@ export default function Navigation() {
 //                     color: 'white'
 //                 }
 //             }}>
-//                 <Stack.Screen name="task" component={Task} options={{ title: 'Task' }} />
+//                 <Stack.Screen name="signup" component={SignUp} options={{ title: 'Sign Up' }} />
                 
                 
             

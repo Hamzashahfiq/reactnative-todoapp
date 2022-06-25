@@ -7,10 +7,11 @@ import LoginScreen from './src/screens/loginScreen/LoginScreen';
 import SplashScreen from './src/screens/splashScreen/SplashScreen';
 
 
-
 export default function App() {
+
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+
 
   // Handle user state changes
   function onAuthStateChanged(user) {
@@ -26,10 +27,9 @@ export default function App() {
   if (initializing) return <SplashScreen />;
 
 
-
   return (
     <Provider store={Store}>
-      {!user ? <LoginScreen />:<Navigation/> }
+      {!user ? <LoginScreen /> : <Navigation />}
     </Provider>
 
   )

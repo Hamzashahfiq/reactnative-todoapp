@@ -1,19 +1,17 @@
 import { View, Text, Alert } from 'react-native'
 import React, { useState } from 'react'
-import { checkLogin } from '../../store/TodoAuthSlice'
-import { useDispatch,useSelector } from 'react-redux'
 import { setScreenSignUp } from '../../store/TodoAuthSlice'
+import { useDispatch } from 'react-redux'
 
 
 const userdetail = {
     userName: "",
     password: ""
 }
-export default function useLoginScreen() {
+export default function useSignUp() {
     const [userDtl, setUserDtl] = useState(userdetail)
     const [logBtnLoading, setLogBtnLoading] = useState(false)
     const dispatch = useDispatch()
-    const isSignUp = useSelector((store) => store.TodoAuthSlice.isSignUp)
 
     const loginHandler = () => {
         if (!userDtl.userName || !userDtl.password) {
@@ -21,7 +19,7 @@ export default function useLoginScreen() {
             return;
         }
         
-        dispatch(checkLogin({userDtl,setLogBtnLoading}))
+        // dispatch(checkLogin({userDtl,setLogBtnLoading}))
 
     }
     
@@ -40,8 +38,7 @@ export default function useLoginScreen() {
         setUserName,
         setPassword,
         logBtnLoading,
-        setScreenSignUp,
-        isSignUp
+        setScreenSignUp
 
     })
 }

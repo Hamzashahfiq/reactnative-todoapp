@@ -20,7 +20,6 @@ export const checkLogin = createAsyncThunk(
         setLogBtnLoading(false)
       }
     
-   return true;
   }
 )
 
@@ -55,10 +54,9 @@ export const checkLogout = createAsyncThunk(
      catch (error){
       Alert.alert(error.message)
       }
-      finally {
-        setLogoutLoading(false)
-      }
-    return false;
+      // finally {
+      //   setLogoutLoading(false)
+      // }
   }
 )
 
@@ -68,29 +66,29 @@ export const checkLogout = createAsyncThunk(
 export const TodoAuthSlice = createSlice({
   name: 'todo',
   initialState : {
-    isLogin:false
+     isSignUp : false,
   },
   reducers: {
-    setLogin(state, action) {
-       state.isLogin = true;
+    setScreenSignUp(state, action) {
+       state.isSignUp = action.payload;
     }
   },
   extraReducers: (builder) => {
     builder.addCase(checkLogin.fulfilled, (state, action) => {
-      state.isLogin = action.payload
+     
   })
 //   .addCase(fatchCurrentUser.fulfilled, (state, action) => {
 //     state.isLogin = action.payload       
 // })
   .addCase(checkLogout.fulfilled, (state, action) => {
-    state.isLogin = action.payload
+    
 })
 },
 
 })
 
 // Action creators are generated for each case reducer function
-export const { setLogin } = TodoAuthSlice.actions
+export const { setScreenSignUp } = TodoAuthSlice.actions
 
 export default TodoAuthSlice.reducer
 
