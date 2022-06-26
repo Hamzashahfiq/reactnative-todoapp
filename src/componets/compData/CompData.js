@@ -34,9 +34,9 @@ export default function CompData({ taskUpdatedHandler }) {
                                 />}
                             <Text style={{ ...Styles.dataText, textDecorationLine: 'line-through' }}>{item.task}</Text>
 
-                            <TouchableOpacity style={Styles.delBtn2} onPress={() => taskUpdatedHandler(item)}>
+                            {/* <TouchableOpacity style={Styles.delBtn2} onPress={() => taskUpdatedHandler(item)}>
                                 <Icon name="pencil" size={22} color="#ffb703" />
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                             {deleteDataLoading &&
                                 deleteUID === item.UID ?
                                 <TouchableOpacity style={Styles.delBtn} >
